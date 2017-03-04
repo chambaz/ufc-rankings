@@ -14,10 +14,17 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {open: false}
+    this.state = {
+      weightClass: 'Pound-for-Pound',
+      open: false
+    }
 
     this.openDrawer = () => this.setState({open: true})
     this.closeDrawer = () => this.setState({open: false})
+    this.changeWeightClass = weightClass => {
+      this.setState({weightClass: weightClass})
+      this.closeDrawer()
+    }
   }
 
   static async getInitialProps() {
@@ -35,7 +42,7 @@ class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <div>
           <AppBar
-            title="UFC Rankings"
+            title={`UFC Rankings - ${this.state.weightClass}`}
             onLeftIconButtonTouchTap={this.openDrawer}
           />
           <List>
@@ -51,7 +58,7 @@ class App extends React.Component {
           </List>
           <Drawer open={this.state.open}>
             {this.props.items.map((item) => (
-              <MenuItem onTouchTap={this.closeDrawer}>{unescape(item.weightClass)}</MenuItem>
+              <MenuItem onTouchTap={() => this.changeWeightClass(item.weightClass)}>{item.weightClass}</MenuItem>
             ))}
           </Drawer>
         </div>
