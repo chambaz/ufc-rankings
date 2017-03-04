@@ -1,12 +1,13 @@
 {
-  "name": "ufc-ranking-app",
+  "name": "ufc-ranking",
   "version": "0.0.0",
-  "description": "A UFC Rankings app",
+  "description": "Scrape UFC.com for ranking data and render in Material UI React app.",
   "main": "index.js",
-  "author": "Adam Chambers",
+  "author": "@chambaz",
   "license": "ISC",
   "scripts": {
-    "dev": "next"
+    "dev": "next",
+    "scrape": "node scrape.js"
   },
   "dependencies": {
     "material-ui": "^0.17.0",
