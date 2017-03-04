@@ -11,5 +11,8 @@
   "dependencies": {
     "material-ui": "^0.17.0",
     "next": "^1.2.3"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^6.10.0"
   }
 }
