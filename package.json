@@ -10,10 +10,11 @@
     "scrape": "node scrape.js"
   },
   "dependencies": {
+    "cheerio": "^0.22.0",
     "material-ui": "^0.17.0",
     "next": "^1.2.3",
-    "cheerio": "^0.22.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "eslint-plugin-react": "^6.10.0"
