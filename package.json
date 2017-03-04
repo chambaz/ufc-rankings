@@ -1,0 +1,11 @@
+{
+  "name": "ufc-ranking-app",
+  "version": "0.0.0",
+  "description": "A UFC Rankings app",
+  "main": "index.js",
+  "author": "Adam Chambers",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^1.2.3"
+  }
+}
