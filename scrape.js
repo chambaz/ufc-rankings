@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs')
 const request = require('request')
 const cheerio = require('cheerio')
 const ufcRankingUrl = 'http://www.ufc.com/rankings'
@@ -24,7 +24,7 @@ request(ufcRankingUrl, (error, response, html) => {
     data.push(listData)
   })
 
-  fs.writeFile('data.json', JSON.stringify(data), function(err) {
+  fs.writeFile('data.json', JSON.stringify(data), () => {
     console.log('File saved')
   })
 
