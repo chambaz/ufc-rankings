@@ -8,6 +8,7 @@ import Avatar from 'material-ui/Avatar'
 import Divider from 'material-ui/Divider'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import Subheader from 'material-ui/Subheader'
 import data from '../data.json'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import _ from 'lodash'
@@ -43,10 +44,11 @@ class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <div>
           <AppBar
-            title={`UFC Rankings - ${this.state.weightClass}`}
+            title='UFC Rankings'
             onLeftIconButtonTouchTap={this.openDrawer}
           />
           <List>
+            <Subheader>{this.state.weightClass}</Subheader>
             {_.find(this.props.items, item => {
               return item.weightClass === this.state.weightClass
             }).fighters.map((item, index) => (
