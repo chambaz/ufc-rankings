@@ -46,30 +46,46 @@ class App extends React.Component {
             title={this.state.weightClass}
             onLeftIconButtonTouchTap={this.openDrawer}
           />
-          <List>
+          <List style={{padding: 0}}>
             {_.find(this.props.items, item => {
               return item.weightClass === this.state.weightClass
-            }).fighters.map((item, index) => (
-              <div>
-                <ListItem
-                  leftAvatar={(
-                    <Avatar backgroundColor='#fff' style={{overflow: 'hidden'}}>
-                      <div style={{
-                        backgroundImage: `url(${item.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        width: 40,
-                        height: 40
-                      }}></div>
-                    </Avatar>
-                  )}
-                  primaryText={item.name}
-                  secondaryText={item.record}
-                  key={index}
-                />
-                <Divider />
-              </div>
-            ))}
+            }).fighters.map((item, index) => {
+              let name = item.name
+              let record = item.record
+              let style = {}
+              let avatarSize = 40
+
+              if (index === 0) {
+                name = <div style={{paddingLeft: 20}}>{name} 🏆</div>
+                record = <div style={{paddingLeft: 20}}>{record}</div>
+                style.backgroundColor = getMuiTheme(lightBaseTheme).palette.accent2Color
+                style.padding = '20px 0 30px'
+                avatarSize = 60
+              }
+
+              return (
+                <div>
+                  <ListItem
+                    leftAvatar={(
+                      <Avatar backgroundColor='#fff' size={avatarSize} style={{overflow: 'hidden'}}>
+                        <div style={{
+                          backgroundImage: `url(${item.image})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          width: avatarSize,
+                          height: avatarSize
+                        }}></div>
+                      </Avatar>
+                    )}
+                    primaryText={name}
+                    secondaryText={record}
+                    key={index}
+                    style={style}
+                  />
+                  <Divider />
+                </div>
+              )
+            })}
           </List>
           <Drawer open={this.state.open}>
             {this.props.items.map((item) => (
