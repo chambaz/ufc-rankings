@@ -12,7 +12,9 @@ export default class MyDocument extends Document {
     return (
      <html>
        <Head>
-         <style>{`body { margin: 0 }`}</style>
+        <title>UFC Rankings 👊</title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+        <style>{`body { margin: 0 }`}</style>
        </Head>
        <body>
          <Main />
