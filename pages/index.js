@@ -10,6 +10,7 @@ import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import data from '../data.json'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import _ from 'lodash'
 
 class App extends React.Component {
   constructor(props) {
@@ -46,7 +47,9 @@ class App extends React.Component {
             onLeftIconButtonTouchTap={this.openDrawer}
           />
           <List>
-            {this.props.items[0].fighters.map((item, index) => (
+            {_.find(this.props.items, item => {
+              return item.weightClass === this.state.weightClass
+            }).fighters.map((item, index) => (
               <ListItem
                 leftAvatar={<Avatar>CM</Avatar>}
                 primaryText={item}
