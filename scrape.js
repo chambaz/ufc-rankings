@@ -21,12 +21,36 @@ request(ufc('/rankings'), (error, response, html) => {
       fighters: []
     }
 
+    const $champion = $(this).find('#champion-fighter-name a')
+
+    let offset = 0
+
+    if ($champion.attr('href')) {
+      listData.fighters[0] = {
+        name: $champion.html()
+      }
+
+      promises.push(getFighter(
+        listData.weightClass,
+        0,
+        $champion.attr('href')
+      ))
+
+      offset = 1
+    }
+
     $(this).find('.name-column a').each(function(index) {
-      listData.fighters[index] = {
+      const i = index + offset
+
+      listData.fighters[i] = {
         name: $(this).html().trim()
       }
 
-      promises.push(getFighter(listData.weightClass, index, $(this).attr('href')))
+      promises.push(getFighter(
+        listData.weightClass,
+        i,
+        $(this).attr('href')
+      ))
     })
 
     data.push(listData)
@@ -49,7 +73,7 @@ request(ufc('/rankings'), (error, response, html) => {
 })
 
 function getFighter(weightClass, ranking, url) {
-  console.log(`Fetching ${url}...`)
+  // console.log(`Fetching ${url}...`)
   return new Promise((resolve, reject) => {
     request(ufc(url), (error, response, html) => {
       if (error || response.statusCode !== 200) {
