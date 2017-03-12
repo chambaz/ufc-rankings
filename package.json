@@ -1,5 +1,5 @@
 {
-  "name": "ufc-ranking",
+  "name": "ufc-rankings",
   "version": "0.0.0",
   "description": "Scrape UFC.com for ranking data and render in Material UI React app.",
   "main": "index.js",
