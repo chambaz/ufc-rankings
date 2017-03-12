@@ -17,7 +17,7 @@ request(ufc('/rankings'), (error, response, html) => {
 
   $('.ranking-list').each(function() {
     const listData = {
-      weightClass: $(this).find('.weight-class-name').html().trim(),
+      weightClass: $(this).find('.weight-class-name').html().trim().replace('&apos;', "'"),
       fighters: []
     }
 

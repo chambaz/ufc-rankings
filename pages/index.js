@@ -20,6 +20,15 @@ class App extends React.Component {
       open: false
     }
 
+    this.theme = getMuiTheme({
+      palette: {
+        primary1Color: '#b6393b'
+      },
+      appBar: {
+        height: 50
+      }
+    })
+
     this.openDrawer = () => this.setState({open: true})
     this.closeDrawer = () => this.setState({open: false})
     this.changeWeightClass = weightClass => {
@@ -40,7 +49,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+      <MuiThemeProvider muiTheme={this.theme}>
         <div>
           <AppBar
             title={this.state.weightClass}
@@ -58,7 +67,7 @@ class App extends React.Component {
               if (index === 0) {
                 name = <div style={{paddingLeft: 20}}>{name} 🏆</div>
                 record = <div style={{paddingLeft: 20}}>{record}</div>
-                style.backgroundColor = getMuiTheme(lightBaseTheme).palette.accent2Color
+                style.backgroundColor = this.theme.palette.accent2Color
                 style.padding = '20px 0 30px'
                 avatarSize = 60
               }
