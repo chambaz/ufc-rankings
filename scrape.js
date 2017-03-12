@@ -2,9 +2,9 @@ const fs = require('fs')
 const Promise = require('promise')
 const request = require('request')
 const cheerio = require('cheerio')
-const ufcRankingUrl = 'http://www.ufc.com/rankings'
+const _ = require('lodash')
 
-request(ufcRankingUrl, (error, response, html) => {
+request(ufc('/rankings'), (error, response, html) => {
   if (error || response.statusCode !== 200) {
     return
   }
@@ -19,28 +19,56 @@ request(ufcRankingUrl, (error, response, html) => {
       fighters: []
     }
 
-    $(this).find('.name-column a').each(function() {
-      listData.fighters.push($(this).html().trim())
-      promises.push(getFighter($(this)))
+    $(this).find('.name-column a').each(function(index) {
+      listData.fighters[index] = {
+        name: $(this).html().trim()
+      }
+
+      promises.push(getFighter(listData.weightClass, index, $(this).attr('href')))
     })
-    
+
     data.push(listData)
   })
 
-  console.log(promises)
+  // console.log(promises)
 
-  Promise.all(promises).then(() => {
-    console.log('done!')
+  Promise.all(promises).then((fighters) => {
+    fighters.forEach(fighter => {
+      const thisFighter = _.find(data, item => {
+        return item.weightClass === fighter.weightClass
+      }).fighters[fighter.ranking]
+
+      thisFighter.record = fighter.record
+      thisFighter.image = fighter.image
+    })
+    console.log(data)
     fs.writeFile('data.json', JSON.stringify(data), () => {
       console.log('File saved')
     })
   })
 })
 
-function getFighter($html) {
-  const $ = cheerio.load($html)
+function getFighter(weightClass, ranking, url) {
+  return new Promise((resolve, reject) => {
+    request(ufc(url), (error, response, html) => {
+      if (error || response.statusCode !== 200) {
+        reject()
+      }
 
-  return new Promise((resolve) => {
-    resolve('yay')
+      const $ = cheerio.load(html)
+
+      // console.log($('.fighter-record').html())
+
+      resolve({
+        weightClass,
+        ranking,
+        record: $('.fighter-record').html().split('<span')[0],
+        image: $('.fighter-image img').attr('src')
+      })
+    })
   })
+}
+
+function ufc(url) {
+  return `http://www.ufc.com${url}`
 }
