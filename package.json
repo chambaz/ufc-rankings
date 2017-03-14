@@ -1,8 +1,8 @@
 {
   "name": "ufc-rankings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scrape UFC.com for ranking data and render in Material UI React app.",
-  "main": "index.js",
+  "main": "pages/index.js",
   "author": "@chambaz",
   "license": "ISC",
   "scripts": {
