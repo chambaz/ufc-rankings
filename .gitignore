@@ -1,2 +1,8 @@
+# dependencies
 node_modules
+.next
+npm-debug.log
+npm-debug.log.*
+
+# app
 data.json
