@@ -7,6 +7,8 @@
   "license": "ISC",
   "scripts": {
     "dev": "next",
+    "build": "npm run scrape && next build",
+    "start": "next start",
     "scrape": "node scrape.js"
   },
   "dependencies": {
