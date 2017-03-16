@@ -6,3 +6,4 @@ npm-debug.log.*
 
 # app
 data.json
+.DS_Store
