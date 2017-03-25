@@ -1,4 +1,4 @@
-👊 [UFC Rankings](https://ufc-rankings.now.sh) 👊
+👊 [UFC Rankings](https://ufcrankings.info/) 👊
 
 Scrape ufc.com for ranking data and render in Material UI React app.
 
@@ -9,4 +9,4 @@ $ npm run dev
 
 💻 Load up localhost:3000
 
-🌎 [ufc-rankings.now.sh](https://ufc-rankings.now.sh)
+🌎 [ufc-rankings.now.sh](https://ufcrankings.info/)
